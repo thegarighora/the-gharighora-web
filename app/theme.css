@@ -1,0 +1,342 @@
+/* ============================================================================
+ * GhariGhora — Brand Theme (SINGLE SOURCE OF TRUTH)
+ * ----------------------------------------------------------------------------
+ * Every colour and gradient used anywhere on the public site is declared in
+ * this file. No component may contain a raw hex value, an oklch(...) literal,
+ * or an ad-hoc `bg-gradient-to-r from-[#xxxxxx]` class. Components only ever
+ * consume the Tailwind tokens generated at the bottom of this file.
+ *
+ * HOW TO RESTYLE THE WHOLE SITE
+ * -----------------------------
+ * 1. Rebrand the palette ....... edit the `--brand-primary-*` (teal / road) and
+ *                                `--brand-secondary-*` (amber / sunset) ramps in
+ *                                the ":root — BRAND RAMPS" block. Everything
+ *                                else on the site derives from them.
+ * 2. Restyle every hero / CTA .. change `--gradient-hero` (Hero, Final CTA,
+ *                                Footer top edge) or `--gradient-cta` (primary
+ *                                buttons, badges, stats band) in the
+ *                                ":root — GRADIENTS" block. One edit here
+ *                                restyles every hero, CTA and section band
+ *                                across the entire site.
+ * 3. Real brand hex codes ...... if marketing supplies exact values, drop them
+ *                                straight into the ramps (hex, rgb and oklch are
+ *                                all valid here). Nothing outside this file
+ *                                needs to change.
+ * 4. Dark mode ................. the `.dark` block only re-points variables that
+ *                                already exist above. Never add new colours there.
+ *
+ * TOKEN -> UTILITY MAP (what components are allowed to use)
+ * ---------------------------------------------------------
+ *   colours    bg-brand-primary / text-brand-primary-700 / border-brand-secondary-300
+ *              bg-brand-surface, text-brand-ink, text-brand-ink-muted, bg-brand-accent
+ *   gradients  bg-gradient-hero, bg-gradient-cta, bg-gradient-card,
+ *              bg-gradient-accent, bg-gradient-surface, bg-gradient-glow,
+ *              text-gradient-brand (fills text with --gradient-text)
+ *   shadows    shadow-brand, shadow-brand-sm, shadow-brand-lg
+ *
+ * NOTE ON TAILWIND: this project is on Tailwind CSS v4, which is configured in
+ * CSS rather than in a `tailwind.config.ts`. The `@theme` block below is the v4
+ * equivalent of `theme.extend.colors`, and the `@utility` blocks are the v4
+ * equivalent of `theme.extend.backgroundImage`.
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * :root — BRAND RAMPS
+ * "Highway Teal" (the road) travelling into "Sunset Amber" (the return leg).
+ * Deliberately warm and earthy rather than a generic SaaS violet/blue.
+ * ------------------------------------------------------------------------ */
+:root {
+  /* Highway Teal — primary */
+  --brand-primary-50: oklch(0.975 0.014 199);
+  --brand-primary-100: oklch(0.943 0.031 197);
+  --brand-primary-200: oklch(0.888 0.056 196);
+  --brand-primary-300: oklch(0.804 0.079 197);
+  --brand-primary-400: oklch(0.699 0.093 200);
+  --brand-primary-500: oklch(0.596 0.096 203);
+  --brand-primary-600: oklch(0.505 0.089 207);
+  --brand-primary-700: oklch(0.424 0.077 211);
+  --brand-primary-800: oklch(0.348 0.062 214);
+  --brand-primary-900: oklch(0.284 0.049 217);
+  --brand-primary-950: oklch(0.208 0.036 219);
+
+  /* Sunset Amber — secondary */
+  --brand-secondary-50: oklch(0.981 0.017 85);
+  --brand-secondary-100: oklch(0.956 0.045 87);
+  --brand-secondary-200: oklch(0.915 0.087 85);
+  --brand-secondary-300: oklch(0.868 0.126 79);
+  --brand-secondary-400: oklch(0.815 0.155 69);
+  --brand-secondary-500: oklch(0.757 0.168 57);
+  --brand-secondary-600: oklch(0.678 0.175 45);
+  --brand-secondary-700: oklch(0.575 0.156 40);
+  --brand-secondary-800: oklch(0.472 0.126 40);
+  --brand-secondary-900: oklch(0.393 0.098 42);
+
+  /* Signal green — reserved for "verified / paid / trust" affirmations */
+  --brand-accent-100: oklch(0.945 0.055 158);
+  --brand-accent-500: oklch(0.66 0.135 158);
+  --brand-accent-600: oklch(0.573 0.122 159);
+  --brand-accent-700: oklch(0.478 0.102 160);
+
+  /* Shorthand aliases — the three names the brand system speaks in */
+  --brand-primary: var(--brand-primary-700);
+  --brand-secondary: var(--brand-secondary-500);
+  --brand-accent: var(--brand-accent-600);
+
+  /* Neutrals / surfaces, tinted slightly towards the brand */
+  --brand-ink: oklch(0.215 0.021 220);
+  --brand-ink-muted: oklch(0.512 0.019 222);
+  --brand-surface: oklch(0.988 0.005 200);
+  --brand-surface-raised: oklch(1 0 0);
+  --brand-hairline: oklch(0.912 0.012 213);
+  --brand-on-brand: oklch(0.995 0.004 200);
+
+  /* ------------------------------------------------------------------------
+   * :root — GRADIENTS
+   * Change these to restyle every hero, CTA and section band on the site.
+   * ---------------------------------------------------------------------- */
+  /* Stops step through lightness gradually — a single teal-to-amber jump shows
+   * a visible chroma band on wide screens. */
+  --gradient-hero: linear-gradient(
+    145deg in oklab,
+    var(--brand-primary-950) 0%,
+    var(--brand-primary-800) 34%,
+    var(--brand-primary-600) 58%,
+    var(--brand-secondary-700) 82%,
+    var(--brand-secondary-500) 100%
+  );
+  --gradient-cta: linear-gradient(
+    100deg in oklab,
+    var(--brand-primary-700) 0%,
+    var(--brand-primary-500) 45%,
+    var(--brand-secondary-500) 100%
+  );
+  --gradient-card: linear-gradient(
+    160deg in oklab,
+    var(--brand-primary-50) 0%,
+    var(--brand-surface-raised) 55%,
+    var(--brand-secondary-50) 100%
+  );
+  /* Used for gradient-filled words in headlines. Deliberately stays inside the
+   * amber ramp: a short word only shows a slice of a gradient, and a
+   * teal-to-amber ramp lands its low-chroma midpoint in the middle of the word.
+   * Both ends clear 3:1 on light surfaces (AA for large text). */
+  --gradient-text: linear-gradient(
+    92deg in oklab,
+    var(--brand-secondary-800) 0%,
+    var(--brand-secondary-600) 100%
+  );
+  --gradient-accent: linear-gradient(
+    100deg in oklab,
+    var(--brand-secondary-400) 0%,
+    var(--brand-secondary-600) 100%
+  );
+  --gradient-surface: linear-gradient(
+    180deg in oklab,
+    var(--brand-surface) 0%,
+    var(--brand-primary-50) 100%
+  );
+  /* Soft glow blobs layered behind hero art and section corners */
+  --gradient-glow: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklch, var(--brand-secondary-400) 55%, transparent) 0%,
+    transparent 70%
+  );
+
+  /* Brand-tinted elevation */
+  --shadow-brand-sm: 0 1px 2px 0
+    color-mix(in oklch, var(--brand-primary-900) 12%, transparent);
+  --shadow-brand-md: 0 8px 24px -6px
+    color-mix(in oklch, var(--brand-primary-900) 22%, transparent);
+  --shadow-brand-lg: 0 24px 60px -18px
+    color-mix(in oklch, var(--brand-primary-900) 34%, transparent);
+
+  /* ------------------------------------------------------------------------
+   * shadcn/ui base tokens, re-pointed at the brand palette so that every
+   * shadcn component (Button, Card, Badge, Tabs, Accordion) inherits the brand
+   * automatically instead of the default neutral greys.
+   * ---------------------------------------------------------------------- */
+  --background: var(--brand-surface-raised);
+  --foreground: var(--brand-ink);
+  --card: var(--brand-surface-raised);
+  --card-foreground: var(--brand-ink);
+  --popover: var(--brand-surface-raised);
+  --popover-foreground: var(--brand-ink);
+  --primary: var(--brand-primary-700);
+  --primary-foreground: var(--brand-on-brand);
+  --secondary: var(--brand-primary-50);
+  --secondary-foreground: var(--brand-primary-800);
+  --muted: var(--brand-surface);
+  --muted-foreground: var(--brand-ink-muted);
+  --accent: var(--brand-secondary-100);
+  --accent-foreground: var(--brand-secondary-800);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: var(--brand-hairline);
+  --input: var(--brand-hairline);
+  --ring: var(--brand-primary-500);
+  --radius: 0.75rem;
+
+  /* Derived shadcn extras (charts / sidebar) so no base token is left dangling. */
+  --chart-1: var(--brand-primary-600);
+  --chart-2: var(--brand-secondary-500);
+  --chart-3: var(--brand-primary-400);
+  --chart-4: var(--brand-secondary-700);
+  --chart-5: var(--brand-accent-600);
+  --sidebar: var(--brand-surface);
+  --sidebar-foreground: var(--brand-ink);
+  --sidebar-primary: var(--brand-primary-700);
+  --sidebar-primary-foreground: var(--brand-on-brand);
+  --sidebar-accent: var(--brand-primary-50);
+  --sidebar-accent-foreground: var(--brand-primary-800);
+  --sidebar-border: var(--brand-hairline);
+  --sidebar-ring: var(--brand-primary-500);
+}
+
+/* --------------------------------------------------------------------------
+ * .dark — re-points the variables above. Add no new colours here.
+ * ------------------------------------------------------------------------ */
+.dark {
+  --brand-primary: var(--brand-primary-300);
+  --brand-secondary: var(--brand-secondary-400);
+  --brand-accent: var(--brand-accent-500);
+
+  --brand-ink: oklch(0.968 0.006 210);
+  --brand-ink-muted: oklch(0.735 0.017 215);
+  --brand-surface: oklch(0.216 0.024 224);
+  --brand-surface-raised: oklch(0.263 0.026 224);
+  --brand-hairline: oklch(0.995 0.004 200 / 12%);
+  --brand-on-brand: oklch(0.16 0.02 222);
+
+  --gradient-hero: linear-gradient(
+    145deg in oklab,
+    oklch(0.168 0.028 222) 0%,
+    var(--brand-primary-900) 42%,
+    var(--brand-primary-700) 70%,
+    var(--brand-secondary-800) 100%
+  );
+  --gradient-card: linear-gradient(
+    160deg in oklab,
+    color-mix(in oklch, var(--brand-primary-700) 26%, var(--brand-surface-raised))
+      0%,
+    var(--brand-surface-raised) 58%,
+    color-mix(in oklch, var(--brand-secondary-700) 22%, var(--brand-surface-raised))
+      100%
+  );
+  --gradient-surface: linear-gradient(
+    180deg in oklab,
+    oklch(0.19 0.022 223) 0%,
+    var(--brand-surface) 100%
+  );
+  --gradient-text: linear-gradient(
+    92deg in oklab,
+    var(--brand-secondary-200) 0%,
+    var(--brand-secondary-400) 100%
+  );
+
+  --background: oklch(0.178 0.021 223);
+  --foreground: var(--brand-ink);
+  --card: var(--brand-surface-raised);
+  --card-foreground: var(--brand-ink);
+  --popover: var(--brand-surface-raised);
+  --popover-foreground: var(--brand-ink);
+  --primary: var(--brand-primary-300);
+  --primary-foreground: var(--brand-on-brand);
+  --secondary: oklch(0.995 0.004 200 / 8%);
+  --secondary-foreground: var(--brand-ink);
+  --muted: var(--brand-surface);
+  --muted-foreground: var(--brand-ink-muted);
+  --accent: oklch(0.995 0.004 200 / 10%);
+  --accent-foreground: var(--brand-secondary-200);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: var(--brand-hairline);
+  --input: oklch(0.995 0.004 200 / 15%);
+  --ring: var(--brand-primary-400);
+}
+
+/* --------------------------------------------------------------------------
+ * Tailwind colour + shadow token registration (v4 equivalent of
+ * `theme.extend.colors`). `inline` keeps the generated utilities pointing at
+ * the variables above, so the `.dark` overrides keep working at runtime.
+ * ------------------------------------------------------------------------ */
+@theme inline {
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-50: var(--brand-primary-50);
+  --color-brand-primary-100: var(--brand-primary-100);
+  --color-brand-primary-200: var(--brand-primary-200);
+  --color-brand-primary-300: var(--brand-primary-300);
+  --color-brand-primary-400: var(--brand-primary-400);
+  --color-brand-primary-500: var(--brand-primary-500);
+  --color-brand-primary-600: var(--brand-primary-600);
+  --color-brand-primary-700: var(--brand-primary-700);
+  --color-brand-primary-800: var(--brand-primary-800);
+  --color-brand-primary-900: var(--brand-primary-900);
+  --color-brand-primary-950: var(--brand-primary-950);
+
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-secondary-50: var(--brand-secondary-50);
+  --color-brand-secondary-100: var(--brand-secondary-100);
+  --color-brand-secondary-200: var(--brand-secondary-200);
+  --color-brand-secondary-300: var(--brand-secondary-300);
+  --color-brand-secondary-400: var(--brand-secondary-400);
+  --color-brand-secondary-500: var(--brand-secondary-500);
+  --color-brand-secondary-600: var(--brand-secondary-600);
+  --color-brand-secondary-700: var(--brand-secondary-700);
+  --color-brand-secondary-800: var(--brand-secondary-800);
+  --color-brand-secondary-900: var(--brand-secondary-900);
+
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-100: var(--brand-accent-100);
+  --color-brand-accent-500: var(--brand-accent-500);
+  --color-brand-accent-600: var(--brand-accent-600);
+  --color-brand-accent-700: var(--brand-accent-700);
+
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-ink-muted: var(--brand-ink-muted);
+  --color-brand-surface: var(--brand-surface);
+  --color-brand-surface-raised: var(--brand-surface-raised);
+  --color-brand-hairline: var(--brand-hairline);
+  --color-brand-on-brand: var(--brand-on-brand);
+
+  --shadow-brand: var(--shadow-brand-md);
+  --shadow-brand-sm: var(--shadow-brand-sm);
+  --shadow-brand-lg: var(--shadow-brand-lg);
+}
+
+/* --------------------------------------------------------------------------
+ * Gradient utilities (v4 equivalent of `theme.extend.backgroundImage`) — the
+ * only sanctioned way to paint a gradient anywhere on the site.
+ * ------------------------------------------------------------------------ */
+@utility bg-gradient-hero {
+  background-image: var(--gradient-hero);
+}
+@utility bg-gradient-cta {
+  background-image: var(--gradient-cta);
+}
+@utility bg-gradient-card {
+  background-image: var(--gradient-card);
+}
+@utility bg-gradient-accent {
+  background-image: var(--gradient-accent);
+}
+@utility bg-gradient-surface {
+  background-image: var(--gradient-surface);
+}
+@utility bg-gradient-glow {
+  background-image: var(--gradient-glow);
+}
+
+/* Gradient-filled text, for the emphasised words in headlines. */
+@utility text-gradient-brand {
+  background-image: var(--gradient-text);
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Dashed road marking, used by the before/after journey diagrams. */
+@utility road-dashes {
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0 14px,
+    transparent 14px 30px
+  );
+}
