@@ -1,5 +1,53 @@
 # The GhariGhora
 
+## GhariGhora Workspace
+
+This project is part of the larger GhariGhora platform.
+
+The sibling projects are located in the parent directory:
+
+- ../the-gharighora-api
+- ../the-ghari-ghora
+- ../the-ghari-ghora-driver
+- ../the-ghari-ghora-web
+- ../the-ghari-ghora-admin-panel
+
+When implementing a feature, inspect relevant sibling projects when their
+implementation can provide useful context.
+
+Examples:
+
+- For API contract or business logic → inspect `../the-gharighora-api`
+- For passenger behavior → inspect `../the-ghari-ghora`
+- For driver behavior → inspect `../the-ghari-ghora-driver`
+- For customer web behavior → inspect `../the-ghari-ghora-web`
+- For admin behavior → inspect `../the-ghari-ghora-admin-panel`
+
+Do NOT inspect every sibling project by default.
+
+Only inspect sibling projects when:
+
+- the feature already exists there
+- the API contract needs clarification
+- business behavior needs verification
+- similar UI/UX needs to be understood
+- authentication/state management needs reference
+- the change affects multiple applications
+
+Use sibling projects as references. Do not blindly copy their code.
+
+## Related Projects
+
+Primary consumers:
+
+- ../the-ghari-ghora
+- ../the-ghari-ghora-driver
+- ../the-ghari-ghora-web
+- ../the-ghari-ghora-admin-panel
+
+When changing an API endpoint, search these consumers before making
+breaking changes.
+
 ## MVP Functional Requirements
 
 ### Version
