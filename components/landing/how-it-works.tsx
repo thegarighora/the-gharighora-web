@@ -82,7 +82,7 @@ export function HowItWorks({ moreLink = true }: { moreLink?: boolean } = {}) {
         description="The same booking, seen from both ends. Nothing happens by phone call alone — every offer, booking and completion is recorded in the app."
       />
 
-      <Tabs defaultValue="passengers" className="mt-10 gap-6 lg:mt-14">
+      <Tabs defaultValue="passengers" className="mt-block gap-6">
         <TabsList className="mx-auto h-auto w-full max-w-md rounded-xl p-1 sm:h-10">
           <TabsTrigger value="passengers" className="h-9 rounded-lg">
             For Passengers
@@ -101,7 +101,7 @@ export function HowItWorks({ moreLink = true }: { moreLink?: boolean } = {}) {
       </Tabs>
 
       {moreLink ? (
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <ArrowLink href={routes.howItWorks}>
             See the full walkthrough
           </ArrowLink>

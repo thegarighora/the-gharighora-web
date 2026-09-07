@@ -79,7 +79,7 @@ export function NumberedList({
   return (
     <ol className={cn("flex flex-col", className)}>
       {steps.map((step, index) => (
-        <li key={step.title} className="relative flex gap-4 pb-8 last:pb-0">
+        <li key={step.title} className="relative flex gap-4 pb-4 last:pb-0">
           {index < steps.length - 1 ? (
             <span
               aria-hidden="true"
@@ -165,7 +165,7 @@ export function CalloutBand({
   return (
     <section
       aria-labelledby="callout-heading"
-      className="relative isolate overflow-hidden bg-gradient-hero py-14 text-brand-on-brand sm:py-16"
+      className="relative isolate overflow-hidden bg-gradient-hero py-section text-brand-on-brand"
     >
       <div
         aria-hidden="true"

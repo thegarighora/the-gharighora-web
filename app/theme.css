@@ -409,3 +409,52 @@
     transparent 14px 30px
   );
 }
+
+/* ============================================================================
+ * VERTICAL RHYTHM
+ * ----------------------------------------------------------------------------
+ * How much air sits between sections, and between a section heading and its
+ * content. These two variables set the density of the whole site — halve them
+ * to tighten every page, double them to open it up. Nothing else needs editing.
+ *
+ *   py-section  band padding, top and bottom (every <Section>, CTA band,
+ *               stats strip, footer, legal body)
+ *   mt-block    gap between a section heading and the content under it
+ *
+ * Values step up at the sm and lg breakpoints, so a phone never carries desktop
+ * whitespace.
+ * ========================================================================== */
+:root {
+  --space-section: 2rem;
+  --space-block: 1.5rem;
+}
+
+@media (width >= 40rem) {
+  :root {
+    --space-section: 2.5rem;
+    --space-block: 1.75rem;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --space-section: 3.5rem;
+    --space-block: 2rem;
+  }
+}
+
+@utility py-section {
+  padding-block: var(--space-section);
+}
+
+@utility pt-section {
+  padding-block-start: var(--space-section);
+}
+
+@utility pb-section {
+  padding-block-end: var(--space-section);
+}
+
+@utility mt-block {
+  margin-block-start: var(--space-block);
+}

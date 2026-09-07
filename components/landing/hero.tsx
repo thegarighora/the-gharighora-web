@@ -21,7 +21,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-gradient-hero pt-28 pb-16 text-brand-on-brand sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28"
+      className="relative isolate overflow-hidden bg-gradient-hero pt-22 pb-8 text-brand-on-brand sm:pt-24 sm:pb-10 lg:pt-28 lg:pb-14"
     >
       {/* Decorative glow + road markings behind the content. */}
       <div
@@ -30,7 +30,7 @@ export function Hero() {
       />
       <div
         aria-hidden="true"
-        className="road-dashes pointer-events-none absolute inset-x-0 bottom-10 h-px text-brand-on-brand/25"
+        className="road-dashes pointer-events-none absolute inset-x-0 bottom-0 h-px text-brand-on-brand/25"
       />
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-5 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-8">

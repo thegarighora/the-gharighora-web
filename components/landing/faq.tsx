@@ -42,11 +42,11 @@ export function Faq({ items = featuredFaqs }: { items?: FaqItem[] }) {
         description="The things people ask most often before their first trip."
       />
 
-      <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-brand-hairline bg-brand-surface-raised px-5 py-2 shadow-brand-sm sm:px-7 lg:mt-14">
+      <div className="mx-auto mt-block max-w-3xl rounded-3xl border border-brand-hairline bg-brand-surface-raised px-5 py-2 shadow-brand-sm sm:px-7">
         <FaqAccordion items={items} />
       </div>
 
-      <div className="mt-8 flex flex-col items-center gap-3">
+      <div className="mt-4 flex flex-col items-center gap-3">
         <ArrowLink href={routes.faq}>Read all the questions</ArrowLink>
         <p className="text-center text-sm text-brand-ink-muted">
           Still unsure?{" "}

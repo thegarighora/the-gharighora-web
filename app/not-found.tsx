@@ -5,7 +5,7 @@ import { navLinks, routes } from "@/lib/site-config";
 
 export default function NotFound() {
   return (
-    <section className="relative isolate flex flex-1 items-center overflow-hidden bg-gradient-hero py-28 text-brand-on-brand sm:py-32">
+    <section className="relative isolate flex flex-1 items-center overflow-hidden bg-gradient-hero pt-22 pb-14 text-brand-on-brand sm:pt-24 sm:pb-16">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -top-24 -right-24 size-96 bg-gradient-glow opacity-40 blur-2xl"

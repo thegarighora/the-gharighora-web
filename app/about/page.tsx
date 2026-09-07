@@ -142,7 +142,7 @@ export default function AboutPage() {
           eyebrow="How we work"
           title="Five things we keep coming back to"
         />
-        <FeatureGrid className="mt-12" items={principles} />
+        <FeatureGrid className="mt-6" items={principles} />
       </Section>
 
       <StatsStrip />
@@ -154,7 +154,7 @@ export default function AboutPage() {
           title="Bangladesh, starting with the busiest roads"
           description="Dhaka and the corridors out of it — Cumilla, Chattogram, Sylhet and the airport routes — are where empty return legs are most common, so that is where we started."
         />
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <ArrowLink href={routes.contact}>
             Want us on your route? Tell us
           </ArrowLink>

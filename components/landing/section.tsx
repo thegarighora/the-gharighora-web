@@ -27,7 +27,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "relative w-full scroll-mt-20 overflow-hidden py-16 sm:py-20 lg:py-28",
+        "relative w-full scroll-mt-20 overflow-hidden py-section",
         tone === "surface" && "bg-gradient-surface",
         tone === "hero" && "bg-gradient-hero text-brand-on-brand",
         className

@@ -161,7 +161,7 @@ export default function TrustSafetyPage() {
           eyebrow="While you travel"
           title="Nobody is left on their own mid-trip"
         />
-        <FeatureGrid className="mt-12" items={duringTrip} columns={4} />
+        <FeatureGrid className="mt-6" items={duringTrip} columns={4} />
       </Section>
 
       <Section aria-labelledby="fairness-heading">
@@ -170,7 +170,7 @@ export default function TrustSafetyPage() {
           eyebrow="Fair dealing"
           title="The rules are the same for everyone"
         />
-        <FeatureGrid className="mt-12" items={fairness} columns={4} />
+        <FeatureGrid className="mt-6" items={fairness} columns={4} />
       </Section>
 
       <TrustSafety moreLink={false} />
@@ -182,7 +182,7 @@ export default function TrustSafetyPage() {
           title="Tell us, and tell us early"
           description="A trip that felt unsafe, a driver who asked for more than the agreed fare, a booking that never showed up — all of it should come to us rather than being sorted out at the roadside."
         />
-        <div className="mx-auto mt-10 max-w-3xl">
+        <div className="mx-auto mt-5 max-w-3xl">
           <InfoCard title="How to reach us fast" icon={PhoneCall}>
             <ul className="flex flex-col gap-2">
               <li>

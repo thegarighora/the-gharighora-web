@@ -125,7 +125,7 @@ export default function CareersPage() {
           eyebrow="Why here"
           title="What working on this is like"
         />
-        <FeatureGrid className="mt-12" items={whyJoin} columns={4} />
+        <FeatureGrid className="mt-6" items={whyJoin} columns={4} />
       </Section>
 
       <Section tone="surface" aria-labelledby="roles-heading">
@@ -136,7 +136,7 @@ export default function CareersPage() {
           description="Sample openings while we finalise hiring — if one is close to what you do, write to us anyway."
         />
 
-        <ul className="mx-auto mt-12 flex max-w-4xl flex-col gap-4">
+        <ul className="mx-auto mt-6 flex max-w-4xl flex-col gap-4">
           {openRoles.map((role) => (
             <li
               key={role.title}
@@ -194,7 +194,7 @@ export default function CareersPage() {
             title="One email is enough"
             description="No forms, no portal, no fifteen-field application."
           />
-          <InfoCard className="mt-10" title="What to send" icon={Mail}>
+          <InfoCard className="mt-5" title="What to send" icon={Mail}>
             <ul className="flex list-disc flex-col gap-2 pl-5 marker:text-brand-primary-400">
               <li>Your CV, or a link to something you have built or run.</li>
               <li>The role you are after — or the role you think we are missing.</li>

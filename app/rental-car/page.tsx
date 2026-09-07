@@ -195,7 +195,7 @@ export default function RentalCarPage() {
           eyebrow="What you get"
           title="Every rental booking includes"
         />
-        <FeatureGrid className="mt-12" items={included} />
+        <FeatureGrid className="mt-6" items={included} />
       </Section>
 
       <Section aria-labelledby="rental-faq-heading">
@@ -204,10 +204,10 @@ export default function RentalCarPage() {
           eyebrow="Rental Car FAQ"
           title="Before you book"
         />
-        <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-brand-hairline bg-brand-surface-raised px-5 py-2 shadow-brand-sm sm:px-7">
+        <div className="mx-auto mt-5 max-w-3xl rounded-3xl border border-brand-hairline bg-brand-surface-raised px-5 py-2 shadow-brand-sm sm:px-7">
           <FaqAccordion items={pageFaqs} />
         </div>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <ArrowLink href={routes.faq}>Read all the questions</ArrowLink>
         </div>
       </Section>

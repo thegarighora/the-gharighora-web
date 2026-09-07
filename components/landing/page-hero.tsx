@@ -29,7 +29,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative isolate overflow-hidden bg-gradient-hero pt-28 pb-14 text-brand-on-brand sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-20",
+        "relative isolate overflow-hidden bg-gradient-hero pt-22 pb-7 text-brand-on-brand sm:pt-24 sm:pb-8 lg:pt-28 lg:pb-10",
         className
       )}
     >
@@ -39,7 +39,7 @@ export function PageHero({
       />
       <div
         aria-hidden="true"
-        className="road-dashes pointer-events-none absolute inset-x-0 bottom-8 h-px text-brand-on-brand/20"
+        className="road-dashes pointer-events-none absolute inset-x-0 bottom-0 h-px text-brand-on-brand/20"
       />
 
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-5 sm:px-6 lg:px-8">

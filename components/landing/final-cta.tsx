@@ -14,7 +14,7 @@ export function FinalCta() {
     <section
       id="download"
       aria-labelledby="download-heading"
-      className="relative isolate scroll-mt-20 overflow-hidden bg-gradient-hero py-16 text-brand-on-brand sm:py-20 lg:py-24"
+      className="relative isolate scroll-mt-20 overflow-hidden bg-gradient-hero py-section text-brand-on-brand"
     >
       <div
         aria-hidden="true"

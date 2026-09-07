@@ -95,7 +95,7 @@ export default function ContactPage() {
           title="Pick whichever fits"
         />
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2">
+        <ul className="mt-6 grid gap-5 sm:grid-cols-2">
           {channels.map((channel) => (
             <li
               key={channel.title}

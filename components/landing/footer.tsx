@@ -45,7 +45,7 @@ const linkClass =
 export function Footer() {
   return (
     <footer className="border-t border-brand-hairline bg-brand-surface">
-      <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-6 lg:px-8 lg:py-16">
+      <div className="mx-auto w-full max-w-6xl px-5 py-section sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr] lg:gap-16">
           <div className="flex flex-col gap-4">
             <Link
@@ -108,7 +108,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col-reverse items-center gap-6 border-t border-brand-hairline pt-8 sm:flex-row sm:justify-between">
+        <div className="mt-6 flex flex-col-reverse items-center gap-6 border-t border-brand-hairline pt-4 sm:flex-row sm:justify-between">
           <p className="text-center text-xs text-brand-ink-muted sm:text-left">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
             <span className="mt-1 block">

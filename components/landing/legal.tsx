@@ -22,7 +22,7 @@ export function Prose({
     <div
       className={cn(
         "text-sm leading-relaxed text-brand-ink-muted sm:text-base",
-        "[&_h3]:mt-8 [&_h3]:mb-2 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-brand-ink sm:[&_h3]:text-lg",
+        "[&_h3]:mt-4 [&_h3]:mb-2 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-brand-ink sm:[&_h3]:text-lg",
         "[&_p]:mb-4 [&_p:last-child]:mb-0",
         "[&_ul]:mb-4 [&_ul]:flex [&_ul]:list-disc [&_ul]:flex-col [&_ul]:gap-2 [&_ul]:pl-5",
         "[&_ol]:mb-4 [&_ol]:flex [&_ol]:list-decimal [&_ol]:flex-col [&_ol]:gap-2 [&_ol]:pl-5",
@@ -58,7 +58,7 @@ export function LegalBody({
   currentHref: string;
 }) {
   return (
-    <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-6 lg:px-8 lg:py-20">
+    <div className="mx-auto w-full max-w-6xl px-5 py-section sm:px-6 lg:px-8">
       <div className="grid gap-10 lg:grid-cols-[16rem_1fr] lg:gap-14">
         <nav
           aria-label="On this page"
@@ -94,7 +94,7 @@ export function LegalBody({
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-10">
+          <div className="mt-block flex flex-col gap-5">
             {sections.map((section, index) => (
               <section
                 key={section.id}
@@ -121,7 +121,7 @@ export function LegalBody({
            * the MVP actually operates. Have counsel review and adjust them
            * (and remove this notice) before launch.
            * ------------------------------------------------------------ */}
-          <div className="mt-12 flex items-start gap-3 rounded-2xl border border-brand-hairline bg-brand-surface p-5 dark:bg-brand-surface-raised">
+          <div className="mt-6 flex items-start gap-3 rounded-2xl border border-brand-hairline bg-brand-surface p-5 dark:bg-brand-surface-raised">
             <FileText
               aria-hidden="true"
               className="mt-0.5 size-5 shrink-0 text-brand-ink-muted"
@@ -140,7 +140,7 @@ export function LegalBody({
             </p>
           </div>
 
-          <div className="mt-8 border-t border-brand-hairline pt-6">
+          <div className="mt-4 border-t border-brand-hairline pt-3">
             <h2 className="text-xs font-semibold tracking-[0.16em] text-brand-ink-muted uppercase">
               Other policies
             </h2>

@@ -99,7 +99,7 @@ export default function HowItWorksPage() {
           title="What the platform does at each stage"
           description="Every step below is recorded, which is what makes a cash-settled trip auditable for both sides."
         />
-        <FeatureGrid className="mt-12" items={lifecycle} />
+        <FeatureGrid className="mt-6" items={lifecycle} />
       </Section>
 
       <Section tone="surface" aria-labelledby="choose-heading">
@@ -110,7 +110,7 @@ export default function HowItWorksPage() {
           description="Both use the same account, the same verified drivers and the same full-vehicle booking. The difference is whose journey it started as."
         />
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
+        <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:gap-8">
           <InfoCard title="Pick Rental Car when…">
             <ul className="flex list-disc flex-col gap-2 pl-5 marker:text-brand-primary-400">
               <li>You have a fixed date and time that has to work.</li>
