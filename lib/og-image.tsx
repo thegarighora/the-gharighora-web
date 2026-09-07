@@ -17,12 +17,12 @@ export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
 
 const BRAND = {
-  deepTeal: "#0b2229",
-  teal: "#0f4a56",
-  midTeal: "#1d6b78",
-  amber: "#e8842a",
-  amberSoft: "#f5b871",
-  onBrand: "#fbfefe",
+  deepTeal: "#042f2e", // --brand-primary-950
+  teal: "#0f766e", // --brand-primary-700 (brand primary)
+  midTeal: "#0d9488", // --brand-primary-600
+  amber: "#f59e0b", // --brand-secondary-500 (brand accent)
+  amberSoft: "#fcd34d", // --brand-secondary-300
+  onBrand: "#f8fafc", // --brand-neutral-50 (brand background)
 };
 
 export function renderOgImage({
@@ -60,7 +60,7 @@ export function renderOgImage({
               width: 56,
               height: 56,
               borderRadius: 16,
-              backgroundColor: "rgba(251,254,254,0.16)",
+              backgroundColor: "rgba(248,250,252,0.16)",
             }}
           >
             {/* Drawn rather than typed: the renderer's default font has no
@@ -129,7 +129,7 @@ export function renderOgImage({
                 display: "flex",
                 fontSize: 28,
                 lineHeight: 1.4,
-                color: "rgba(251,254,254,0.82)",
+                color: "rgba(248,250,252,0.82)",
                 maxWidth: 880,
               }}
             >
@@ -145,7 +145,7 @@ export function renderOgImage({
             alignItems: "center",
             gap: 28,
             fontSize: 22,
-            color: "rgba(251,254,254,0.78)",
+            color: "rgba(248,250,252,0.78)",
           }}
         >
           <span>Verified drivers</span>

@@ -188,7 +188,7 @@ function JourneyLeg({
           className={cn(
             "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
             state === "loaded"
-              ? "bg-brand-accent-100 text-brand-accent-700"
+              ? "bg-brand-success-100 text-brand-success-700"
               : "bg-brand-surface-raised text-brand-ink-muted ring-1 ring-brand-hairline dark:bg-brand-surface"
           )}
         >

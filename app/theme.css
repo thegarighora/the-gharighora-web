@@ -8,10 +8,17 @@
  *
  * HOW TO RESTYLE THE WHOLE SITE
  * -----------------------------
- * 1. Rebrand the palette ....... edit the `--brand-primary-*` (teal / road) and
- *                                `--brand-secondary-*` (amber / sunset) ramps in
- *                                the ":root — BRAND RAMPS" block. Everything
- *                                else on the site derives from them.
+ * 1. Rebrand the palette ....... edit the `--brand-primary-*` (teal / road),
+ *                                `--brand-secondary-*` (amber / sunset) and
+ *                                `--brand-neutral-*` (slate) ramps in the
+ *                                ":root — BRAND RAMPS" block. Everything else
+ *                                on the site derives from them. The Satori-
+ *                                rendered images (app/icon.tsx,
+ *                                app/apple-icon.tsx, lib/og-image.tsx) and the
+ *                                browser-chrome colours (app/manifest.ts,
+ *                                app/layout.tsx `themeColor`) cannot read CSS
+ *                                variables and carry their own literals —
+ *                                update those alongside a rebrand.
  * 2. Restyle every hero / CTA .. change `--gradient-hero` (Hero, Final CTA,
  *                                Footer top edge) or `--gradient-cta` (primary
  *                                buttons, badges, stats band) in the
@@ -28,7 +35,10 @@
  * TOKEN -> UTILITY MAP (what components are allowed to use)
  * ---------------------------------------------------------
  *   colours    bg-brand-primary / text-brand-primary-700 / border-brand-secondary-300
- *              bg-brand-surface, text-brand-ink, text-brand-ink-muted, bg-brand-accent
+ *              bg-brand-accent-* (alias of the secondary/amber ramp)
+ *              bg-brand-neutral-* (the slate ramp)
+ *              bg-brand-surface, text-brand-ink, text-brand-ink-muted
+ *              bg-brand-success-* (semantic "verified / paid" green only)
  *   gradients  bg-gradient-hero, bg-gradient-cta, bg-gradient-card,
  *              bg-gradient-accent, bg-gradient-surface, bg-gradient-glow,
  *              text-gradient-brand (fills text with --gradient-text)
@@ -44,51 +54,80 @@
  * :root — BRAND RAMPS
  * "Highway Teal" (the road) travelling into "Sunset Amber" (the return leg).
  * Deliberately warm and earthy rather than a generic SaaS violet/blue.
+ *
+ * The five values marked ← BRAND are the official GhariGhora palette; every
+ * other step in a ramp exists only to shade around them.
+ *
+ *   Primary     #0F766E   teal
+ *   Accent      #F59E0B   amber
+ *   Background  #F8FAFC   slate
+ *   Text        #0F172A   slate
+ *   Secondary   #64748B   slate
  * ------------------------------------------------------------------------ */
 :root {
   /* Highway Teal — primary */
-  --brand-primary-50: oklch(0.975 0.014 199);
-  --brand-primary-100: oklch(0.943 0.031 197);
-  --brand-primary-200: oklch(0.888 0.056 196);
-  --brand-primary-300: oklch(0.804 0.079 197);
-  --brand-primary-400: oklch(0.699 0.093 200);
-  --brand-primary-500: oklch(0.596 0.096 203);
-  --brand-primary-600: oklch(0.505 0.089 207);
-  --brand-primary-700: oklch(0.424 0.077 211);
-  --brand-primary-800: oklch(0.348 0.062 214);
-  --brand-primary-900: oklch(0.284 0.049 217);
-  --brand-primary-950: oklch(0.208 0.036 219);
+  --brand-primary-50: #f0fdfa;
+  --brand-primary-100: #ccfbf1;
+  --brand-primary-200: #99f6e4;
+  --brand-primary-300: #5eead4;
+  --brand-primary-400: #2dd4bf;
+  --brand-primary-500: #14b8a6;
+  --brand-primary-600: #0d9488;
+  --brand-primary-700: #0f766e; /* ← BRAND primary */
+  --brand-primary-800: #115e59;
+  --brand-primary-900: #134e4a;
+  --brand-primary-950: #042f2e;
 
-  /* Sunset Amber — secondary */
-  --brand-secondary-50: oklch(0.981 0.017 85);
-  --brand-secondary-100: oklch(0.956 0.045 87);
-  --brand-secondary-200: oklch(0.915 0.087 85);
-  --brand-secondary-300: oklch(0.868 0.126 79);
-  --brand-secondary-400: oklch(0.815 0.155 69);
-  --brand-secondary-500: oklch(0.757 0.168 57);
-  --brand-secondary-600: oklch(0.678 0.175 45);
-  --brand-secondary-700: oklch(0.575 0.156 40);
-  --brand-secondary-800: oklch(0.472 0.126 40);
-  --brand-secondary-900: oklch(0.393 0.098 42);
+  /* Sunset Amber — secondary / accent */
+  --brand-secondary-50: #fffbeb;
+  --brand-secondary-100: #fef3c7;
+  --brand-secondary-200: #fde68a;
+  --brand-secondary-300: #fcd34d;
+  --brand-secondary-400: #fbbf24;
+  --brand-secondary-500: #f59e0b; /* ← BRAND accent */
+  --brand-secondary-600: #d97706;
+  --brand-secondary-700: #b45309;
+  --brand-secondary-800: #92400e;
+  --brand-secondary-900: #78350f;
 
-  /* Signal green — reserved for "verified / paid / trust" affirmations */
-  --brand-accent-100: oklch(0.945 0.055 158);
-  --brand-accent-500: oklch(0.66 0.135 158);
-  --brand-accent-600: oklch(0.573 0.122 159);
-  --brand-accent-700: oklch(0.478 0.102 160);
+  /* Slate — the neutral ramp behind text, surfaces and hairlines */
+  --brand-neutral-50: #f8fafc; /* ← BRAND background */
+  --brand-neutral-100: #f1f5f9;
+  --brand-neutral-200: #e2e8f0;
+  --brand-neutral-300: #cbd5e1;
+  --brand-neutral-400: #94a3b8;
+  --brand-neutral-500: #64748b; /* ← BRAND secondary */
+  --brand-neutral-600: #475569;
+  --brand-neutral-700: #334155;
+  --brand-neutral-800: #1e293b;
+  --brand-neutral-900: #0f172a; /* ← BRAND text */
+  --brand-neutral-950: #020617;
 
-  /* Shorthand aliases — the three names the brand system speaks in */
+  /* Signal green — outside the brand palette, reserved for semantic
+   * "verified / paid / trust" affirmations (the counterpart to --destructive). */
+  --brand-success-100: #d1fae5;
+  --brand-success-500: #10b981;
+  --brand-success-600: #059669;
+  --brand-success-700: #047857;
+
+  /* Shorthand aliases — the names the brand system speaks in.
+   * `accent` and `secondary` are the same amber; both names are kept because
+   * the palette calls it the accent and the ramp is named secondary. */
   --brand-primary: var(--brand-primary-700);
   --brand-secondary: var(--brand-secondary-500);
-  --brand-accent: var(--brand-accent-600);
+  --brand-accent: var(--brand-secondary-500);
 
-  /* Neutrals / surfaces, tinted slightly towards the brand */
-  --brand-ink: oklch(0.215 0.021 220);
-  --brand-ink-muted: oklch(0.512 0.019 222);
-  --brand-surface: oklch(0.988 0.005 200);
-  --brand-surface-raised: oklch(1 0 0);
-  --brand-hairline: oklch(0.912 0.012 213);
-  --brand-on-brand: oklch(0.995 0.004 200);
+  /* Neutrals / surfaces */
+  --brand-ink: var(--brand-neutral-900);
+  --brand-ink-muted: var(--brand-neutral-500);
+  --brand-surface: var(--brand-neutral-50);
+  --brand-surface-raised: #ffffff;
+  --brand-hairline: var(--brand-neutral-200);
+  --brand-on-brand: var(--brand-neutral-50);
+
+  /* Fixed shadow tint. Deliberately NOT var(--brand-ink): that flips light in
+   * dark mode and would turn every shadow into a white glow. */
+  --brand-shadow-tint: #0f172a;
 
   /* ------------------------------------------------------------------------
    * :root — GRADIENTS
@@ -99,16 +138,18 @@
   --gradient-hero: linear-gradient(
     145deg in oklab,
     var(--brand-primary-950) 0%,
-    var(--brand-primary-800) 34%,
-    var(--brand-primary-600) 58%,
-    var(--brand-secondary-700) 82%,
+    var(--brand-primary-800) 30%,
+    var(--brand-primary-600) 55%,
+    var(--brand-secondary-600) 82%,
     var(--brand-secondary-500) 100%
   );
+  /* Amber is held to the far edge: centred white button text sits over the teal
+   * end, which clears AA. White on #F59E0B is only ~1.9:1 and never would. */
   --gradient-cta: linear-gradient(
     100deg in oklab,
-    var(--brand-primary-700) 0%,
-    var(--brand-primary-500) 45%,
-    var(--brand-secondary-500) 100%
+    var(--brand-primary-800) 0%,
+    var(--brand-primary-600) 62%,
+    var(--brand-secondary-600) 100%
   );
   --gradient-card: linear-gradient(
     160deg in oklab,
@@ -144,18 +185,20 @@
 
   /* Brand-tinted elevation */
   --shadow-brand-sm: 0 1px 2px 0
-    color-mix(in oklch, var(--brand-primary-900) 12%, transparent);
+    color-mix(in oklch, var(--brand-shadow-tint) 12%, transparent);
   --shadow-brand-md: 0 8px 24px -6px
-    color-mix(in oklch, var(--brand-primary-900) 22%, transparent);
+    color-mix(in oklch, var(--brand-shadow-tint) 22%, transparent);
   --shadow-brand-lg: 0 24px 60px -18px
-    color-mix(in oklch, var(--brand-primary-900) 34%, transparent);
+    color-mix(in oklch, var(--brand-shadow-tint) 34%, transparent);
 
   /* ------------------------------------------------------------------------
    * shadcn/ui base tokens, re-pointed at the brand palette so that every
    * shadcn component (Button, Card, Badge, Tabs, Accordion) inherits the brand
    * automatically instead of the default neutral greys.
    * ---------------------------------------------------------------------- */
-  --background: var(--brand-surface-raised);
+  /* The palette's Background #F8FAFC is the page ground; white is reserved for
+   * raised surfaces (cards, popovers) so they read as lifted off it. */
+  --background: var(--brand-surface);
   --foreground: var(--brand-ink);
   --card: var(--brand-surface-raised);
   --card-foreground: var(--brand-ink);
@@ -165,11 +208,11 @@
   --primary-foreground: var(--brand-on-brand);
   --secondary: var(--brand-primary-50);
   --secondary-foreground: var(--brand-primary-800);
-  --muted: var(--brand-surface);
+  --muted: var(--brand-neutral-100);
   --muted-foreground: var(--brand-ink-muted);
   --accent: var(--brand-secondary-100);
   --accent-foreground: var(--brand-secondary-800);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: #dc2626;
   --border: var(--brand-hairline);
   --input: var(--brand-hairline);
   --ring: var(--brand-primary-500);
@@ -180,7 +223,7 @@
   --chart-2: var(--brand-secondary-500);
   --chart-3: var(--brand-primary-400);
   --chart-4: var(--brand-secondary-700);
-  --chart-5: var(--brand-accent-600);
+  --chart-5: var(--brand-success-600);
   --sidebar: var(--brand-surface);
   --sidebar-foreground: var(--brand-ink);
   --sidebar-primary: var(--brand-primary-700);
@@ -197,20 +240,22 @@
 .dark {
   --brand-primary: var(--brand-primary-300);
   --brand-secondary: var(--brand-secondary-400);
-  --brand-accent: var(--brand-accent-500);
+  --brand-accent: var(--brand-secondary-400);
 
-  --brand-ink: oklch(0.968 0.006 210);
-  --brand-ink-muted: oklch(0.735 0.017 215);
-  --brand-surface: oklch(0.216 0.024 224);
-  --brand-surface-raised: oklch(0.263 0.026 224);
-  --brand-hairline: oklch(0.995 0.004 200 / 12%);
-  --brand-on-brand: oklch(0.16 0.02 222);
+  /* The brand's Text #0F172A becomes the page ground here, and the ramp is read
+   * from the other end: slate-100 ink on a slate-900 / slate-800 surface stack. */
+  --brand-ink: var(--brand-neutral-100);
+  --brand-ink-muted: var(--brand-neutral-400);
+  --brand-surface: var(--brand-neutral-900);
+  --brand-surface-raised: var(--brand-neutral-800);
+  --brand-hairline: rgb(248 250 252 / 12%);
+  --brand-on-brand: var(--brand-neutral-900);
 
   --gradient-hero: linear-gradient(
     145deg in oklab,
-    oklch(0.168 0.028 222) 0%,
-    var(--brand-primary-900) 42%,
-    var(--brand-primary-700) 70%,
+    var(--brand-neutral-950) 0%,
+    var(--brand-primary-950) 42%,
+    var(--brand-primary-800) 70%,
     var(--brand-secondary-800) 100%
   );
   --gradient-card: linear-gradient(
@@ -223,7 +268,7 @@
   );
   --gradient-surface: linear-gradient(
     180deg in oklab,
-    oklch(0.19 0.022 223) 0%,
+    var(--brand-neutral-950) 0%,
     var(--brand-surface) 100%
   );
   --gradient-text: linear-gradient(
@@ -232,7 +277,7 @@
     var(--brand-secondary-400) 100%
   );
 
-  --background: oklch(0.178 0.021 223);
+  --background: var(--brand-neutral-950);
   --foreground: var(--brand-ink);
   --card: var(--brand-surface-raised);
   --card-foreground: var(--brand-ink);
@@ -240,15 +285,15 @@
   --popover-foreground: var(--brand-ink);
   --primary: var(--brand-primary-300);
   --primary-foreground: var(--brand-on-brand);
-  --secondary: oklch(0.995 0.004 200 / 8%);
+  --secondary: rgb(248 250 252 / 8%);
   --secondary-foreground: var(--brand-ink);
-  --muted: var(--brand-surface);
+  --muted: var(--brand-surface-raised);
   --muted-foreground: var(--brand-ink-muted);
-  --accent: oklch(0.995 0.004 200 / 10%);
+  --accent: rgb(248 250 252 / 10%);
   --accent-foreground: var(--brand-secondary-200);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: #f87171;
   --border: var(--brand-hairline);
-  --input: oklch(0.995 0.004 200 / 15%);
+  --input: rgb(248 250 252 / 15%);
   --ring: var(--brand-primary-400);
 }
 
@@ -283,11 +328,35 @@
   --color-brand-secondary-800: var(--brand-secondary-800);
   --color-brand-secondary-900: var(--brand-secondary-900);
 
+  /* Accent is the amber ramp under the palette's own name for it. */
   --color-brand-accent: var(--brand-accent);
-  --color-brand-accent-100: var(--brand-accent-100);
-  --color-brand-accent-500: var(--brand-accent-500);
-  --color-brand-accent-600: var(--brand-accent-600);
-  --color-brand-accent-700: var(--brand-accent-700);
+  --color-brand-accent-50: var(--brand-secondary-50);
+  --color-brand-accent-100: var(--brand-secondary-100);
+  --color-brand-accent-200: var(--brand-secondary-200);
+  --color-brand-accent-300: var(--brand-secondary-300);
+  --color-brand-accent-400: var(--brand-secondary-400);
+  --color-brand-accent-500: var(--brand-secondary-500);
+  --color-brand-accent-600: var(--brand-secondary-600);
+  --color-brand-accent-700: var(--brand-secondary-700);
+  --color-brand-accent-800: var(--brand-secondary-800);
+  --color-brand-accent-900: var(--brand-secondary-900);
+
+  --color-brand-neutral-50: var(--brand-neutral-50);
+  --color-brand-neutral-100: var(--brand-neutral-100);
+  --color-brand-neutral-200: var(--brand-neutral-200);
+  --color-brand-neutral-300: var(--brand-neutral-300);
+  --color-brand-neutral-400: var(--brand-neutral-400);
+  --color-brand-neutral-500: var(--brand-neutral-500);
+  --color-brand-neutral-600: var(--brand-neutral-600);
+  --color-brand-neutral-700: var(--brand-neutral-700);
+  --color-brand-neutral-800: var(--brand-neutral-800);
+  --color-brand-neutral-900: var(--brand-neutral-900);
+  --color-brand-neutral-950: var(--brand-neutral-950);
+
+  --color-brand-success-100: var(--brand-success-100);
+  --color-brand-success-500: var(--brand-success-500);
+  --color-brand-success-600: var(--brand-success-600);
+  --color-brand-success-700: var(--brand-success-700);
 
   --color-brand-ink: var(--brand-ink);
   --color-brand-ink-muted: var(--brand-ink-muted);

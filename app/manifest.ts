@@ -13,9 +13,9 @@ export default function manifest(): MetadataRoute.Manifest {
     description: siteConfig.pitch,
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    // Matches --brand-primary-950 in app/theme.css.
-    theme_color: "#0b2a31",
+    // Matches --brand-neutral-50 / --brand-primary-700 in app/theme.css.
+    background_color: "#f8fafc",
+    theme_color: "#0f766e",
     lang: siteConfig.language,
     categories: ["travel", "transportation"],
     icons: [
