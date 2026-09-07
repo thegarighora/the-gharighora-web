@@ -85,9 +85,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    // Matches --brand-primary-950 / the dark surface in app/theme.css.
-    { media: "(prefers-color-scheme: light)", color: "#0b2a31" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b2a31" },
+    // Matches --brand-neutral-50 (page ground) / --brand-neutral-950 (dark
+    // page ground) in app/theme.css.
+    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: dark)", color: "#020617" },
   ],
 };
 

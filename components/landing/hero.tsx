@@ -103,7 +103,7 @@ export function Hero() {
                 <span className="text-xs font-semibold tracking-[0.14em] text-brand-primary-600 uppercase">
                   Return trips today
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-brand-accent-100 px-2 py-0.5 text-[0.7rem] font-semibold text-brand-accent-700">
+                <span className="inline-flex items-center gap-1 rounded-full bg-brand-success-100 px-2 py-0.5 text-[0.7rem] font-semibold text-brand-success-700">
                   <BadgeCheck aria-hidden="true" className="size-3" />
                   Verified
                 </span>

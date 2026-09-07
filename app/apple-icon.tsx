@@ -16,9 +16,10 @@ export default function AppleIcon() {
           justifyContent: "center",
           fontSize: 110,
           fontWeight: 700,
-          color: "#fbfefe",
+          color: "#f8fafc",
           // Mirrors --gradient-cta in app/theme.css (Satori cannot read CSS vars).
-          background: "linear-gradient(135deg, #0f4a56 0%, #1d6b78 45%, #e8842a 100%)",
+          background:
+            "linear-gradient(135deg, #115e59 0%, #0d9488 62%, #d97706 100%)",
         }}
       >
         G

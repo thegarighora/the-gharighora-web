@@ -96,7 +96,7 @@ export function TrustSafety({
       </ul>
 
       <div className="mt-10 flex flex-col items-center gap-3 rounded-2xl border border-brand-hairline bg-brand-surface px-6 py-5 text-center sm:flex-row sm:justify-center sm:gap-4 sm:text-left dark:bg-brand-surface-raised">
-        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-accent-100 text-brand-accent-700">
+        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-success-100 text-brand-success-700">
           <Headphones aria-hidden="true" className="size-5" />
         </span>
         <p className="text-sm leading-relaxed text-brand-ink-muted">
