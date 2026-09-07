@@ -109,7 +109,7 @@ export default function DownloadPage() {
           title="Book a car in a couple of taps"
           description="Built mobile-first, because that is how nearly everyone here travels and books."
         />
-        <FeatureGrid className="mt-12" items={passengerFeatures} columns={4} />
+        <FeatureGrid className="mt-6" items={passengerFeatures} columns={4} />
       </Section>
 
       <Section tone="surface" aria-labelledby="driver-app-heading">
@@ -119,9 +119,9 @@ export default function DownloadPage() {
           title="Run your day from the driver seat"
           description="Availability, offers, bookings, trips, earnings and commission in one place."
         />
-        <FeatureGrid className="mt-12" items={driverFeatures} columns={4} />
+        <FeatureGrid className="mt-6" items={driverFeatures} columns={4} />
 
-        <InfoCard className="mx-auto mt-10 max-w-3xl" title="Not launched yet?">
+        <InfoCard className="mx-auto mt-5 max-w-3xl" title="Not launched yet?">
           <p>
             The store listings go live at launch. Until then, tell us which app
             you want and we will send the link the day it is available — write to{" "}

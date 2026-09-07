@@ -179,7 +179,7 @@ export default function ForDriversPage() {
           title="Four things to bring"
           description="If you already drive for hire, you almost certainly have all of these."
         />
-        <FeatureGrid className="mt-12" items={requirements} columns={4} />
+        <FeatureGrid className="mt-6" items={requirements} columns={4} />
       </Section>
 
       <Section aria-labelledby="earnings-detail-heading">
@@ -188,10 +188,10 @@ export default function ForDriversPage() {
           eyebrow="Money"
           title="How earning works here"
         />
-        <FeatureGrid className="mt-12" items={earnings} columns={2} />
+        <FeatureGrid className="mt-6" items={earnings} columns={2} />
 
         <InfoCard
-          className="mx-auto mt-10 max-w-3xl"
+          className="mx-auto mt-5 max-w-3xl"
           title="One rule worth knowing up front"
           icon={Receipt}
         >
@@ -211,10 +211,10 @@ export default function ForDriversPage() {
           eyebrow="Driver FAQ"
           title="Questions drivers ask"
         />
-        <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-brand-hairline bg-brand-surface-raised px-5 py-2 shadow-brand-sm sm:px-7">
+        <div className="mx-auto mt-5 max-w-3xl rounded-3xl border border-brand-hairline bg-brand-surface-raised px-5 py-2 shadow-brand-sm sm:px-7">
           <FaqAccordion items={pageFaqs} />
         </div>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <ArrowLink href={routes.faq}>Read all the questions</ArrowLink>
         </div>
       </Section>

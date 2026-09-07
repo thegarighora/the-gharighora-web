@@ -180,7 +180,7 @@ export default function ReturnCarPage() {
           description="Most people start by searching. If nothing on your route matches, post a request and let drivers come to you."
         />
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
+        <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:gap-8">
           <article className="flex flex-col gap-6 rounded-3xl border border-brand-hairline bg-brand-surface-raised p-6 shadow-brand-sm sm:p-8">
             <div className="flex items-center gap-3">
               <span className="grid size-11 place-items-center rounded-2xl bg-gradient-cta text-brand-on-brand shadow-brand-sm">
@@ -275,10 +275,10 @@ export default function ReturnCarPage() {
           eyebrow="Why it is cheaper"
           title="A lower fare, without a lower standard"
         />
-        <FeatureGrid className="mt-12" items={whyItWorks} />
+        <FeatureGrid className="mt-6" items={whyItWorks} />
 
         <InfoCard
-          className="mx-auto mt-10 max-w-3xl"
+          className="mx-auto mt-5 max-w-3xl"
           title="One thing Return Car is not"
         >
           <p>
@@ -295,10 +295,10 @@ export default function ReturnCarPage() {
           eyebrow="Return Car FAQ"
           title="The usual questions"
         />
-        <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-brand-hairline bg-brand-surface-raised px-5 py-2 shadow-brand-sm sm:px-7">
+        <div className="mx-auto mt-5 max-w-3xl rounded-3xl border border-brand-hairline bg-brand-surface-raised px-5 py-2 shadow-brand-sm sm:px-7">
           <FaqAccordion items={pageFaqs} />
         </div>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <ArrowLink href={routes.faq}>Read all the questions</ArrowLink>
         </div>
       </Section>

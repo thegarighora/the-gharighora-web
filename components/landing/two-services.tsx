@@ -98,7 +98,7 @@ export function TwoServices() {
         description="Log in once and choose what you need. Rental Car covers the trip you are planning; Return Car turns somebody else's finished trip into your cheaper ride."
       />
 
-      <div className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-2 lg:gap-8">
+      <div className="mt-block grid gap-6 lg:grid-cols-2 lg:gap-8">
         {services.map((service) => (
           <article
             key={service.id}
@@ -189,7 +189,7 @@ export function TwoServices() {
         ))}
       </div>
 
-      <p className="mt-8 text-center text-sm text-brand-ink-muted">
+      <p className="mt-4 text-center text-sm text-brand-ink-muted">
         Both services book the <strong className="font-semibold text-brand-ink">whole vehicle</strong>{" "}
         — GhariGhora does not sell individual seats.
       </p>

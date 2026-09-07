@@ -26,7 +26,7 @@ export function ProblemInsight({
       />
 
       {/* Sample route and fares — Dhaka <-> Cumilla figures are illustrative placeholders. */}
-      <div className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-2 lg:gap-8">
+      <div className="mt-block grid gap-6 lg:grid-cols-2 lg:gap-8">
         <JourneyPanel
           variant="problem"
           label="Traditional rental"
@@ -45,7 +45,7 @@ export function ProblemInsight({
         />
       </div>
 
-      <p className="mx-auto mt-10 max-w-2xl rounded-2xl border border-brand-hairline bg-brand-surface-raised px-5 py-4 text-center text-sm leading-relaxed text-brand-ink-muted shadow-brand-sm sm:text-base">
+      <p className="mx-auto mt-5 max-w-2xl rounded-2xl border border-brand-hairline bg-brand-surface-raised px-5 py-4 text-center text-sm leading-relaxed text-brand-ink-muted shadow-brand-sm sm:text-base">
         <span className="font-semibold text-brand-ink">
           A car is already going that way.
         </span>{" "}
@@ -53,7 +53,7 @@ export function ProblemInsight({
       </p>
 
       {moreLink ? (
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <ArrowLink href={routes.returnCar}>
             See how Return Car works
           </ArrowLink>

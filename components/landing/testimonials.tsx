@@ -40,7 +40,7 @@ export function Testimonials() {
       />
 
       {/* Swipeable row on mobile, plain grid from tablet up — no JS needed. */}
-      <ul className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 lg:mt-16 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
+      <ul className="mt-block flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
         {testimonials.map((testimonial) => (
           <li
             key={testimonial.name}

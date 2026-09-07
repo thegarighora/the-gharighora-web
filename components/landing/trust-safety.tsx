@@ -66,7 +66,7 @@ export function TrustSafety({
         description="Intercity travel in Bangladesh usually runs on phone calls and word of mouth. We keep the flexibility, and add verification, a recorded fare, and someone accountable on the other end of the line."
       />
 
-      <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
+      <ul className="mt-block grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {trustItems.map((item) => (
           <li
             key={item.title}
@@ -95,7 +95,7 @@ export function TrustSafety({
         ))}
       </ul>
 
-      <div className="mt-10 flex flex-col items-center gap-3 rounded-2xl border border-brand-hairline bg-brand-surface px-6 py-5 text-center sm:flex-row sm:justify-center sm:gap-4 sm:text-left dark:bg-brand-surface-raised">
+      <div className="mt-5 flex flex-col items-center gap-3 rounded-2xl border border-brand-hairline bg-brand-surface px-6 py-5 text-center sm:flex-row sm:justify-center sm:gap-4 sm:text-left dark:bg-brand-surface-raised">
         <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-success-100 text-brand-success-700">
           <Headphones aria-hidden="true" className="size-5" />
         </span>
@@ -112,7 +112,7 @@ export function TrustSafety({
       </div>
 
       {moreLink ? (
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <ArrowLink href={routes.trustSafety}>
             How we keep trips safe
           </ArrowLink>

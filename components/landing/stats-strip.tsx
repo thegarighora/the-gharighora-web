@@ -16,7 +16,7 @@ export function StatsStrip() {
   return (
     <section
       aria-labelledby="stats-heading"
-      className="relative overflow-hidden bg-gradient-cta py-12 text-brand-on-brand sm:py-14"
+      className="relative overflow-hidden bg-gradient-cta py-section text-brand-on-brand"
     >
       <div
         aria-hidden="true"
