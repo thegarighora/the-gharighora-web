@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "prepare": "node .husky/install.mjs",
     "commitlint": "commitlint --edit",
     "validate": "yarn typecheck && yarn lint"
