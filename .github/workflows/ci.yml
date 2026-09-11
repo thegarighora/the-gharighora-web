@@ -1,0 +1,81 @@
+# TypeScript, lint and production-build gate for every pull request, and for
+# anything that lands on a protected branch.
+#
+# Job names here (`typecheck`, `lint`, `build`) are the status-check contexts
+# referenced by scripts/setup-branch-protection.sh. Renaming a job means
+# updating that script, or protection silently stops requiring the check.
+name: CI
+
+on:
+  pull_request:
+    branches: [development, master, main]
+  push:
+    branches: [development, master, main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Placeholders. `next build` reads these at build time; real values live in
+  # the hosting environment, and nothing here talks to a live service.
+  NEXT_PUBLIC_SITE_URL: https://gharighora.com
+
+jobs:
+  typecheck:
+    name: typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn typecheck
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+
+  commits:
+    name: commits
+    # Every commit on the branch has to satisfy the same rule the commit-msg
+    # hook applies locally, so a `--no-verify` commit cannot slip in unnoticed.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - name: Lint commit messages in this pull request
+        run: >-
+          npx --no-install commitlint
+          --from "origin/${{ github.base_ref }}"
+          --to "${{ github.event.pull_request.head.sha }}"
+          --verbose
