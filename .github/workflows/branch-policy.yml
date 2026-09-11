@@ -1,0 +1,85 @@
+# Guards the shape of the branch graph, which branch protection rules cannot
+# express on their own: protection can demand a pull request, but it cannot say
+# which branch that pull request is allowed to come from.
+#
+#   feat/whatever  --PR-->  development  --PR-->  master
+#
+# Mark both jobs below as required status checks on `master` and `development`,
+# otherwise they report a violation without being able to block the merge.
+# scripts/setup-branch-protection.sh does that for you.
+name: Branch Policy
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+concurrency:
+  group: branch-policy-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  branch-policy:
+    name: branch-policy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check base and head branches
+        env:
+          BASE: ${{ github.base_ref }}
+          HEAD: ${{ github.head_ref }}
+        run: |
+          echo "pull request: $HEAD -> $BASE"
+
+          case "$BASE" in
+            master | main)
+              if [ "$HEAD" != "development" ]; then
+                echo "::error::A pull request into [$BASE] may come only from [development], not from [$HEAD]. Merge [$HEAD] into [development] first, then open a release pull request from [development] into [$BASE]."
+                exit 1
+              fi
+              echo "Release pull request from [development]. Allowed."
+              ;;
+            development)
+              case "$HEAD" in
+                master | main)
+                  echo "::error::[$HEAD] must not be merged back into [development] through a pull request. Sync it locally with a merge or rebase, or cherry-pick the commits onto a branch of your own."
+                  exit 1
+                  ;;
+              esac
+              echo "Feature pull request from [$HEAD] into [development]. Allowed."
+              ;;
+            *)
+              echo "Base [$BASE] is not a protected branch, so no branch rule applies."
+              ;;
+          esac
+
+      - name: Check branch naming
+        if: github.base_ref == 'development'
+        env:
+          HEAD: ${{ github.head_ref }}
+        run: |
+          # Advisory only. A poorly named branch is worth flagging, not worth
+          # blocking a merge over.
+          if printf '%s' "$HEAD" | grep -Eq '^(feat|fix|hotfix|perf|refactor|style|docs|test|build|ci|chore|revert)/[a-z0-9._-]+$'; then
+            echo "Branch name [$HEAD] follows the convention."
+          else
+            echo "::warning::Branch [$HEAD] does not match <type>/<kebab-case-description>, for example feat/driver-commission-gate."
+          fi
+
+  pr-title:
+    name: pr-title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the pull request title is a Conventional Commit
+        env:
+          # A squash merge takes its commit message from the pull request title,
+          # so the title has to satisfy the same rule the commit-msg hook
+          # applies to every commit.
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "title: $TITLE"
+          pattern='^(feat|fix|perf|refactor|style|docs|test|build|ci|chore|revert)(\([a-z0-9][a-z0-9.-]*\))?!?: .+'
+          if printf '%s' "$TITLE" | grep -Eq "$pattern"; then
+            echo "Title follows Conventional Commits."
+          else
+            echo "::error::The pull request title must follow Conventional Commits, for example: feat(booking): add fare breakdown. Allowed types: feat, fix, perf, refactor, style, docs, test, build, ci, chore, revert."
+            exit 1
+          fi
