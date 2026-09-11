@@ -1,0 +1,21 @@
+. "$(dirname "$0")/protected-branches.sh"
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+
+if is_protected "$branch"; then
+  echo ""
+  echo "  Refusing to commit directly on [$branch]."
+  echo ""
+  echo "  Protected branches change only through a pull request."
+  echo "  Move the work onto a branch of your own and commit there:"
+  echo ""
+  echo "      git stash"
+  echo "      git switch -c feat/short-description"
+  echo "      git stash pop"
+  echo ""
+  echo "  Then push that branch and open a PR into [development]."
+  echo ""
+  exit 1
+fi
+
+npx --no-install lint-staged

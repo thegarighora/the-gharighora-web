@@ -1,0 +1,10 @@
+# <type>(<scope>): <subject>
+#
+# Types: feat fix perf refactor style docs test build ci chore revert
+# Subject: imperative, lower-case, no trailing period. Header <= 100 chars.
+#
+# Body: what changed and why, wrapped at about 80 columns. Blank line above.
+#
+# Footers, blank line above:
+#   Refs: #123
+#   BREAKING CHANGE: what broke, and what to do instead

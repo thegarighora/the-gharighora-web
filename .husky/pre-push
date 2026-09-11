@@ -1,0 +1,39 @@
+. "$(dirname "$0")/protected-branches.sh"
+
+# git feeds one line per ref it intends to push:
+#   <local ref> <local sha> <remote ref> <remote sha>
+# Reading the *remote* ref also catches `git push origin HEAD:master`, which a
+# plain "which branch am I standing on" check would wave straight through.
+targets=""
+while read -r _local_ref _local_sha remote_ref _remote_sha; do
+  [ -z "$remote_ref" ] && continue
+  targets="$targets ${remote_ref#refs/heads/}"
+done
+
+# git hands us nothing when it has already discarded every ref, for instance a
+# non-fast-forward push it means to reject. Nothing will leave the machine in
+# that case, so falling back to the current branch costs no legitimate push and
+# turns the everyday `git push` from a protected branch into a clear message
+# rather than a confusing rejection further down.
+if [ -z "$targets" ]; then
+  targets="$(git rev-parse --abbrev-ref HEAD)"
+fi
+
+for branch in $targets; do
+  if is_protected "$branch"; then
+    echo ""
+    echo "  Refusing to push to [$branch]."
+    echo ""
+    echo "  Push your own branch and open a pull request instead:"
+    echo ""
+    echo "      git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
+    echo ""
+    echo "  feat/... --PR--> development --PR--> master"
+    echo ""
+    exit 1
+  fi
+done
+
+# Run what CI runs, so a red pull request is the exception rather than routine.
+echo "pre-push: typecheck and lint"
+yarn --silent validate
